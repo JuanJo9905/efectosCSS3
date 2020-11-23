@@ -1,0 +1,1 @@
+Los efectos mostrados en éste proyecto fueron logrados gracias al curso de efectos de jotajotavm.com/css3

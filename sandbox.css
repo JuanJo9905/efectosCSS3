@@ -1,0 +1,604 @@
+div{
+    border: 2px solid black;
+    margin: 10px 10px;
+    font-weight: bolder;
+    padding: 15px 30px;
+    width: 10%;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+/*Eventos*/
+#link:hover{
+    background-color: burlywood;
+    font-size: large;
+}
+
+#link a:focus{
+    color: chartreuse;
+}
+#texto:hover{
+    background-color: cadetblue;
+    font-size: large; 
+}
+#texto:active{
+    background-color: chocolate;
+}
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Triangulo lateral*/
+.triangulo_lateral{
+    -webkit-transform: translateX(0); /*Segun el navegador(En éste caso chrome) se usa el transform pero todos comparten el translateX(0)*/
+    background-color: violet;
+}
+.triangulo_lateral:before{
+    content:''; /*El content es obligatorio para cualquier 'before' o 'after' aunque esté vacio*/
+    -webkit-transition-duration: 0.3s; /*Define lo que dura la transicion para el cambio de posicion lo que lo hace ver animado*/
+
+    /*Configuracion para crear un triangulo con la casilla*/
+    border-style: solid;
+    border-width: 15px 15px 15px 0px;
+    border-color: transparent violet transparent transparent;
+    
+    /*Configuracion de posicion para que la casilla quede centrada*/
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    margin-top:-15px;
+}
+.triangulo_lateral:hover:before{
+    left: -13px;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Triangulo fijo*/
+.triangulo_fijo{
+    -webkit-transform: translateX(0); /*Segun el navegador(En éste caso chrome) se usa el transform pero todos comparten el translateX(0)*/
+    background-color: rgb(83, 61, 83);
+    -webkit-transition-duration: 0.3s;
+}
+
+.triangulo_fijo:before{
+    content:''; /*El content es obligatorio para cualquier 'before' o 'after' aunque esté vacio*/
+    -webkit-transition-duration: 0.3s; /*Define lo que dura la transicion para el cambio de posicion lo que lo hace ver animado*/
+
+    /*Configuracion para crear un triangulo con la casilla*/
+    border-style: solid;
+    border-width: 0px 15px 15px 15px;
+    border-color: transparent transparent rgb(83, 61, 83) transparent;
+    
+    /*Configuracion de posicion para que la casilla quede centrada*/
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left:-15px;
+}
+/*Debido a que la caja se mueve se debe hacer una transicion en su eje vertical*/
+.triangulo_fijo:hover{
+    -webkit-transform: translateY(15px);
+}
+
+.triangulo_fijo:hover:before{
+    top: -14px;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Esquina de página*/
+.esquina_pag{
+    -webkit-transform: translateX(0);
+    background-color: turquoise;
+    /*Debido a que la plantilla div viene con borde se oculta para que no interfiera con el efecto */
+    border: turquoise;
+}
+.esquina_pag:before{
+    -webkit-transition-duration: 0.5s;
+    content: '';/*Obligatorio en pseudo-elementos*/
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    left: 0px;
+    bottom: 0px;
+    /*Para hacer el efecto se necesita un color degradado en una direccion de 45°*/
+    background: -webkit-linear-gradient(45deg, white 45%, #aaa 50%, #ccc 60%, white)/*Se dividen los porcentajes del cuadro por colores para que se vea degradado*/
+}
+.esquina_pag:hover:before{ 
+    /*Se le da valores al ancho y alto para que el efecto sea visible */
+    width: 35px; 
+    height: 35px;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Sombra fija*/
+.sombra_fija{
+    -webkit-transform: translateX(0);
+    background: grey;
+}
+.sombra_fija:before{
+    content: '';
+    position: absolute;
+    width: 90%; /*Ancho del pseudo-elemento para que parezca la sombra*/
+    left: 5%; /*Se le acerca un 5% hacia la izquierda para que quede centrado*/
+    top: 110%; /*La distancia que se aleja de la parte de arriba del elemento*/
+    height: 20px; /*Altura que va a tener la sombra*/
+    background: -webkit-radial-gradient(center, ellipse, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 80% );/*Difuminado de los colores para que parezca sombra*/
+    -webkit-transition-duration: 0.4s;
+    opacity: 0; /*La sombra no se ve porque comienza siendo totalmente transparente*/
+}
+/*Movimientos para que parezca animado*/
+.sombra_fija:hover{
+    -webkit-transform: translateY(-5px);
+}
+.sombra_fija:hover:before{
+    -webkit-transform: translateY(5px);
+    opacity: 1; /*La sombra se opaca en 1 haciendo que ya sea visible*/
+    -webkit-transition-duration: 0.7s; /*Se le da un tiempo de animacion para que la aparicion de la sombra no se vea repentina*/
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Sombra difuminada*/
+.sombra_dif{
+    background-color: grey;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0); /* (desplazamiento_vertical despl_horizontal ancho_dif color_dif)*/
+    -webkit-transition-duration: 0.4s;
+}
+.sombra_dif:hover{
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Sombra radial*/
+.sombra_rad{
+    background-color: grey;
+    position: relative;
+    box-shadow: 0px 0px 1px black;  /* (desplazamiento_vertical despl_horizontal ancho_rad color_rad)*/
+}
+.sombra_rad:before,.sombra_rad:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    left: 0px;
+    opacity: 0;
+    -webkit-transition-duration: 0.3s;
+    
+}
+.sombra_rad:before{
+    bottom: 100%;/*Posicion del difuminado de arriba*/
+    /*Se define que forma seguira el difuminado, los colores y su porcentaje de opacidad*/
+    background:radial-gradient(ellipse at 50% 150%, rgba(0,0,0,0.6)0%, rgba(0,0,0,0)80%); 
+}
+.sombra_rad:after{
+    top: 100%;/*Posicion del difuminado de abajo*/
+    /*Se define que forma seguira el difuminado, los colores y su porcentaje de opacidad*/
+    background:radial-gradient(ellipse at 50% -50%, rgba(0,0,0,0.6)0%, rgba(0,0,0,0)80%); 
+}
+.sombra_rad:hover:before,.sombra_rad:hover:after{
+    opacity: 1;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Sombra externa*/
+.sombra_ext{
+    background: cadetblue;
+    /*box-shadow: desplazamiento_vertical, desplazamiento_horizontal, difuminado, color */
+    box-shadow: 0px 0px 1px black; /*Ésta opcion puede lograr efectos bastante entretenidos*/
+    -webkit-transition-duration: 2s;
+}
+.sombra_ext:hover{
+    box-shadow: 3px 4px 10px black;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Sombra interna*/
+.sombra_int{
+    background: cadetblue;
+        -webkit-transition-duration: 2s;
+}
+.sombra_int:hover{
+    /*box-shadow: desplazamiento_vertical, desplazamiento_horizontal, difuminado, color */
+    /*La palabra inset revierte las sombras mostrandolas dentro del recuadro y la ',' permite combinar sombras*/
+    box-shadow: 2px 2px 5px black inset, -2px -2px 5px black inset; 
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Resalte de borde*/
+.resalte_borde{
+    /*box-shadow: desplazamiento_vertical, desplazamiento_horizontal, difuminado, color */
+    /*La palabra inset revierte las sombras mostrandolas dentro del recuadro*/
+    box-shadow: inset 0 0 0 4px #ddd;
+    background: violet;
+}
+
+.resalte_borde:hover{
+    box-shadow: inset 0 0 0 4px black;
+    -webkit-transition-duration: 0.5s;
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Borde interno*/
+.borde_interno{
+    position: relative;
+    background: violet;
+}
+.borde_interno:before{
+    content:'';
+    position: absolute;
+    border: 4px solid white;/*tamaño del borde, tipo de borde y color*/
+   /*Al darle una ubicacion al borde éste la seguirá y unira todas las posiciones*/
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    opacity: 0;
+    /*Se le agrega el tiempo a la transicion segun el navegador (En este caso chrome)*/
+    -webkit-transition-duration: 0.3s;
+}
+.borde_interno:hover:before{
+    opacity:1
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Expansion del borde*/
+.expansion_borde{
+    background: violet;
+    position: relative;
+}
+.expansion_borde:before{
+    content: '';
+    position: absolute;
+    border: 4px solid black;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    -webkit-transition-duration: 0.5s;
+}
+.expansion_borde:hover:before{
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Reduccion del borde*/
+.reduccion_borde{
+    background: violet;
+    position: relative;
+}
+.reduccion_borde:before{
+    content: '';
+    position: absolute;
+    border: 4px solid black;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    opacity: 0;
+    -webkit-transition-duration: 0.5s;
+}
+.reduccion_borde:hover:before{
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    left: -5px;
+    opacity: 1;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Redondeado de esquinas*/
+.redondeado{
+    background: violet;
+    -webkit-transition-duration: 0.5s;
+}
+.redondeado:hover{
+    border-radius: 20px;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Menú*/
+.menu{
+    background: grey;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    list-style:none;   
+}
+.menu li{
+    display: inline-block;
+    margin: 7px 5px;
+    width: 20%;
+}
+.menu a{
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    padding: 5px 10px;
+    padding: 2px;
+}
+/*Una forma de acceder a los elementos de una lista es con :nth-of-type(posicion)*/
+.menu li:nth-of-type(1) a:focus{
+    /*De ésta manera se accede al primer elemento de la lista*/
+    border-bottom: 4px solid coral;
+}
+.menu li:nth-of-type(2) a:focus{
+    /*De ésta manera se accede al segundo elemento de la lista*/
+    border-bottom: 4px solid darkcyan;
+}
+.menu li:nth-of-type(3) a:focus{
+    /*De ésta manera se accede al segundo elemento de la lista*/
+    border-bottom: 4px solid crimson;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Cambio de color*/
+.cambio:hover{
+    -webkit-animation: 2.5s cambio_color 1; /*-webkit-animation: duracion_animacion nombre_keyframe repetir_animacion;*/
+}
+/*Se declara el navegador y el keyframe */
+@-webkit-keyframes cambio_color{
+    /*Se define el porcentaje en el que se completara el cambio*/
+    /*Los keyframes son transitivos por lo tanto 50% es el punto de culminacion del efecto, luego volvera a su estado inicial*/
+    50%{
+        background: red;
+    }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Chicle*/
+.chicle:hover{
+    -webkit-animation: 1s chicle 1;
+    background: pink;
+}
+@-webkit-keyframes chicle{
+    /*Se dividen las secciones de las animaciones modificando el ancho y alto para que parezca que se recoja*/
+    30%{-webkit-transform: scaleX(1.25) scaleY(0.75) ;} /*Mas ancho, menos alto*/
+    40%{-webkit-transform: scaleX(0.75) scaleY(1.25) ;} /*Mas alto, menos ancho*/
+    60%{-webkit-transform: scaleX(1.15) scaleY(0.85) ;} /*Ancho y alto aproximados a el valor original*/
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Rebote*/
+.rebote:hover{
+    -webkit-animation: 2s rebote 1;
+    background: powderblue;
+}
+@-webkit-keyframes rebote{
+    20%,50%,80%{-webkit-transform:translateY(0px)}
+    40%{-webkit-transform:translateY(-45px);}
+    60%{-webkit-transform:translateY(-25px);}
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Aparicion*/
+.aparicion:hover{
+    -webkit-animation: 2s aparicion 1;
+    background: gray;
+}
+@-webkit-keyframes aparicion{
+    0%{opacity: 0;}
+    50%{opacity: 0.8;}
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Sombra movil*/
+.sombra_movil{
+    -webkit-transform: translateX(0);
+    background: grey;
+}
+.sombra_movil:before{
+    content: '';
+    position: absolute;
+    width: 90%; /*Ancho del pseudo-elemento para que parezca la sombra*/
+    left: 5%; /*Se le acerca un 5% hacia la izquierda para que quede centrado*/
+    top: 110%; /*La distancia que se aleja de la parte de arriba del elemento*/
+    height: 20px; /*Altura que va a tener la sombra*/
+    background: -webkit-radial-gradient(center, ellipse, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 80% );/*Difuminado de los colores para que parezca sombra*/
+    -webkit-transition-duration: 0.4s;
+    opacity: 0; /*La sombra no se ve porque comienza siendo totalmente transparente*/
+}
+/*Movimientos para que parezca animado*/
+.sombra_movil:hover{
+    -webkit-animation: 1s mover_caja infinite;
+}
+@-webkit-keyframes mover_caja{
+    50%{
+        -webkit-transform:translateY(-3px);
+    }
+}
+.sombra_movil:hover:before{
+    opacity: 0.4; /*La sombra se opaca en 1 haciendo que ya sea visible*/
+    -webkit-transition-duration: 0.7s; /*Se le da un tiempo de animacion para que la aparicion de la sombra no se vea repentina*/
+    -webkit-animation: 1s mover_sombra infinite;
+}
+@-webkit-keyframes mover_sombra{
+    50%{
+        opacity:1;
+        -webkit-transform:translateY(3px);
+    }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Triangulo animado*/
+.triangulo_anim{
+    -webkit-transform: translateX(0); /*Segun el navegador(En éste caso chrome) se usa el transform pero todos comparten el translateX(0)*/
+    background-color: violet;
+}
+.triangulo_anim:before{
+    content:''; /*El content es obligatorio para cualquier 'before' o 'after' aunque esté vacio*/
+    -webkit-transition-duration: 0.3s; /*Define lo que dura la transicion para el cambio de posicion lo que lo hace ver animado*/
+
+    /*Configuracion para crear un triangulo con la casilla*/
+    border-style: solid;
+    border-width: 15px 15px 15px 0px;
+    border-color: transparent violet transparent transparent;
+    
+    /*Configuracion de posicion para que la casilla quede centrada*/
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    margin-top:-15px;
+}
+.triangulo_anim:hover:before{
+    -webkit-animation: 1s mover_flecha infinite;
+}
+@-webkit-keyframes mover_flecha{
+    25%{
+        left: -20px; /*Se lleva la flecha 20px a la izquierda sin rotar*/
+        -webkit-transform: rotate(0deg) ;
+    }
+    65%{
+        left:-20px; /*Manteniendo la posicion se gira 180 grados*/
+        -webkit-transform: rotate(180deg);
+    }
+    90%{
+        /*Mientras la flecha se devuelve no debe modificar su direccion para que entre completamente girada*/
+        -webkit-transform: rotate(180deg);
+    }
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Giro x*/
+.giro_x:active{
+    -webkit-animation: 1s giro 1;
+}
+@-webkit-keyframes giro{
+    0%{
+        opacity: 0.5;
+        /*Entre mas grandes los pixeles de la perspectiva mas pequeño se va a ver el efecto*/
+        -webkit-transform: perspective(200px) rotateX(90deg); /*La rotacion en x es el efecto 3d*/
+    }
+    40%{
+       
+        -webkit-transform: perspective(200px) rotateX(-20deg);
+    }
+    70%{
+        -webkit-transform: perspective(200px) rotateX(20deg);
+    }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Balanceo*/
+.balanceo{
+    background: rgb(39, 39, 63);
+}
+.balanceo:hover{
+    -webkit-animation: 2s balanceo 1;
+}
+@-webkit-keyframes balanceo{
+    20%{-webkit-transform: scale(0.9) rotate(-3deg);}
+
+    30%,50%,70%,90%{-webkit-transform: scale(1.1) rotate(3deg)}
+
+    40%,60%,80%{-webkit-transform: scale(1.1) rotate(-3deg); }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Doble click*/
+.doble_click{
+    background: rgb(39, 39, 63);
+}
+.doble_click:hover{
+    -webkit-animation: 1s dobleclick 1;
+}
+@-webkit-keyframes dobleclick{
+    40%{-webkit-transform: scale(1.1);}
+    
+    20%,60%{-webkit-transform: scale(0.8);}
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Intermitente*/
+.intermitente{
+    background: rgb(39, 39, 63);
+}
+.intermitente:hover{
+    -webkit-animation: 2s intermitente infinite;
+}
+@-webkit-keyframes intermitente{
+    50%{opacity:1;}
+
+    25%, 75%{opacity: 0;}
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Descarte*/
+.descarte{
+    background: rgb(39, 39, 63);
+}
+.descarte:hover{
+    -webkit-animation: 2s descartar 1;
+}
+@-webkit-keyframes descartar{
+    0% {
+        -webkit-transform-origin: left bottom;
+        -webkit-transform: rotate(0deg);
+        opacity: 1;
+    }
+
+    100%{
+        -webkit-transform-origin: right bottom;
+        -webkit-transform: rotate(-90deg);
+        opacity: 0;
+    }
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*Onda*/
+.onda{
+    background: rgb(39, 39, 63);
+}
+.onda:hover{
+    -webkit-animation: 2s onda 1;
+}
+@-webkit-keyframes onda{
+    20%, 40%, 60%{border-radius: 0% 0% 80% 0%;}
+
+    30%, 50%, 70%{border-radius: 0% 0% 0% 80%;}
+}
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
